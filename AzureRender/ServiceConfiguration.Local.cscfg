@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureRender" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="2" osVersion="*" schemaVersion="2013-03.2.0">
+  <Role name="Merger">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DataBaseConnectionString" value=""/>
+      <Setting name="DataBaseTableName" value="Users"/>
+      <Setting name="ServiceName" value="" />
+      <Setting name="SubscriptionID" value=""/>
+    </ConfigurationSettings>
+  </Role>
+  
+  <Role name="Worker">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DataBaseConnectionString" value=""/>
+      <Setting name="DataBaseTableName" value="Users"/>
+      <Setting name="ServiceName" value="" />
+      <Setting name="SubscriptionID" value=""/>
+    </ConfigurationSettings>
+  </Role>
+  
+  <Role name="Dispatcher">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DataBaseConnectionString" value=""/>
+      <Setting name="DataBaseTableName" value="Users"/>
+      <Setting name="ServiceName" value="" />
+      <Setting name="SubscriptionID" value=""/>
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

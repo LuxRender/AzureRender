@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="AzureRender" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
+  <WorkerRole name="Merger" vmsize="Small">
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="DataBaseConnectionString" />
+      <Setting name="DataBaseTableName" />
+      <Setting name="ServiceName" />
+      <Setting name="SubscriptionID" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InternalEndpoint name="CountEndpoint" protocol="tcp" />
+    </Endpoints>
+    <LocalResources>
+      <LocalStorage name="InstanceDriveCache" cleanOnRoleRecycle="false" sizeInMB="30" />
+    </LocalResources>
+  </WorkerRole>
+  <WorkerRole name="Worker" vmsize="Small">
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="DataBaseConnectionString" />
+      <Setting name="DataBaseTableName" />
+      <Setting name="ServiceName" />
+      <Setting name="SubscriptionID" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InternalEndpoint name="CountEndpoint" protocol="tcp" />
+    </Endpoints>
+    <LocalResources>
+      <LocalStorage name="InstanceDriveCache" cleanOnRoleRecycle="true" sizeInMB="500" />
+    </LocalResources>
+  </WorkerRole>
+  <WorkerRole name="Dispatcher" vmsize="Small">
+    <Endpoints>
+      <InputEndpoint name="InPort" protocol="tcp" port="3451" />
+    </Endpoints>
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="DataBaseConnectionString" />
+      <Setting name="DataBaseTableName" />
+      <Setting name="ServiceName" />
+      <Setting name="SubscriptionID" />
+    </ConfigurationSettings>
+    <LocalResources>
+      <LocalStorage name="InstanceDriveCache" cleanOnRoleRecycle="false" sizeInMB="30" />
+      <LocalStorage name="Logger" cleanOnRoleRecycle="false" sizeInMB="100" />
+    </LocalResources>
+  </WorkerRole>
+</ServiceDefinition>

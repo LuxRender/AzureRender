@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.0</ProductVersion>
+    <ProjectGuid>{f0599f5e-4158-4146-a58f-8924250236af}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AzureRender</RootNamespace>
+    <AssemblyName>AzureRender</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>AzureRender</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dispatcher\Dispatcher.csproj">
+      <Name>Dispatcher</Name>
+      <Project>{3095be0f-9e68-4d8b-b88f-5b879c50ec8f}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>Dispatcher</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\Merger\Merger.csproj">
+      <Name>Merger</Name>
+      <Project>{90df9f99-6e18-4ab0-9b19-e018082d0abb}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>Merger</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\Worker\Worker.csproj">
+      <Name>Worker</Name>
+      <Project>{14435c4f-8e20-41d2-ae42-53d491b03cfe}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>Worker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DispatcherContent\" />
+    <Folder Include="MergerContent\" />
+    <Folder Include="Profiles" />
+    <Folder Include="WorkerContent\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DispatcherContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="MergerContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="WorkerContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\RevitRenderProduction.azurePubxml" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.0\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>

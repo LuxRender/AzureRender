@@ -1,0 +1,14 @@
+The following software should be installed to build "LuxRender for Cloud":
+1) Visual Studio 2010 SP1 for Web developer
+2) Azure SDK 2.0 or later
+3) NuGet manager
+
+The following dlls should be put to Libs folder:
+1) Libs\Deployment dlls
+   msvcp100.dll
+   msvcr100.dll
+These libs are part of Visual C++ 2010 redistributable package.
+Also they can be found in the installation folder of LuxRender.
+2) Libs\LuxRender\64
+   liblux.dll
+This library is built with LuxRender.
